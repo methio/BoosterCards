@@ -1,13 +1,5 @@
 <!doctype html>
 <html>
-  <!-- 
-  TO DO 
-
-  ✅ obj 1 : afficher la donnée 
-  ✅ obj 2 : clear : generatedCardsSet
-  obj 3 : choisir la feuille qui sert de Set (changer l'index de la page )
-
--->
 <head>
 	<title>proto Tirage au sort cartes</title>
 	<meta charset="utf-8">
@@ -17,29 +9,33 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-<h1>Tirage au sort de carte</h1>
-<p> rules goes here</p>
+  <h1>Tirage au sort de carte</h1>
+  <p> rules goes here</p>
 
-<label for="sheet">Index de la feuille utilisée dans google sheet : </label>
+  <div id="sheetSelection">
+    <label for="sheet">Index de la feuille utilisée dans google sheet : </label>
 
-<input 
-  type="number" 
-  name="sheet"
-  id="sheet"
-  min="1" 
-  max="99" 
-  value="1" 
-  required
->
-<input 
-  type="submit" 
-  value="Charger une nouvelle feuille"
-  id="loadNewSheetButton"
->
+    <input 
+      type="number" 
+      name="sheet"
+      id="sheet"
+      min="1" 
+      max="99" 
+      value="1" 
+      required
+    >
+    <input 
+      type="submit" 
+      value="Charger une nouvelle feuille"
+      id="loadNewSheetButton"
+    >
+  </div>
 
-  <button id="generateCardButton">générer une carte</button>
+  <div class="actionsButtons">
+    <button id="generateCardButton">générer une carte</button>
 
-  <button id="clearDataButton">vider l'historique des tirages</button>
+    <button id="clearDataButton">vider l'historique des tirages</button>
+  </div>
 
   <div id="generatedCardContainer">
     <p id="firstCard"></p>
@@ -49,10 +45,5 @@
 
   <ul id="generatedCardMemoryContainer">    
   </ul>
-
-
 </body>
 </html>
-<script type="text/javascript">
-
-</script>

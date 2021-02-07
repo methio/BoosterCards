@@ -1,84 +1,88 @@
+/* ############################################################################################
+                                    VARIABLES GLOBALES
+#############################################################################################*/
 
 let SheetIndex = 1;
 let url = 'https://spreadsheets.google.com/feeds/list/1hJmH_-bgyaAXR2u2xeR-N_gT9iKIXIjU02YK17dhrU8/'+SheetIndex+'/public/basic?alt=json';
 
-// global var
+let currentCardSet = [];
 let generatedCardsSet = [];
 let generatedCardsSetIndex = 1;
 let generatedCardMemory = document.getElementById("generatedCardMemoryContainer");
 
 
-      
-    function generateCard(){
-      $.getJSON(url,function(data){
-      
-        let dataHandler = [];      
+/* ############################################################################################
+                                    FONCTIONS PRINCIPALES
+#############################################################################################*/
 
-        //############### Sélection des cartes ############### 
-        for(let i = 0; i < 3; i++){
-          let index = getRandomInt(1, data.feed.entry.length);
-        
-          let d = data.feed.entry[index].content.$t
-            .split(/,+ /)
-            .map(field=>field.split(/:+ /));
+function generateCard(){
+  $.getJSON(url,function(data){  
+    currentCardSet = []; // on vide le tableau des 3 cartes courantes
 
-          let selectedalue = d[i][1];
-          dataHandler.push(selectedalue);
-
-          // console.log("index : " + index + ", item : " + selectedalue);        
-        }
-        generatedCardsSet.push(dataHandler);
-        console.log(generatedCardsSet);
-
-        //############### Affichage des cartes tirées ###############     
-        let cardContainer = document.getElementById("generatedCardContainer");       
-
-        document.getElementById("firstCard").innerHTML = dataHandler[0];
-        document.getElementById("secondCard").innerHTML = dataHandler[1];
-        document.getElementById("thirdCard").innerHTML = dataHandler[2];
-
-        cardContainer.style.display = "block";
-
-        // ############### Ajout des cartes tirées au tableau des cartes générées ###############
-        let cardTag = [];
-        let cardText = [];
-
-        let lI = document.createElement("li");
-        let lC = document.createTextNode("index du tirage : " + generatedCardsSetIndex); 
-        lI.appendChild(lC);
-        generatedCardMemory.appendChild(lI);      
-
-        for(let i = 0; i < 3; i++){
-          cardTag[i] = document.createElement("li");
-          cardText[i] = document.createTextNode(dataHandler[i]);
-          cardTag[i].appendChild(cardText[i]);
-
-          generatedCardMemory.appendChild(cardTag[i]);
-        }
-        
-        generatedCardsSetIndex += 1;
-      });
+    //################### 1 -> Sélection des cartes ################### 
+    for(let i = 0; i < 3; i++){
+      let index = getRandomInt(1, data.feed.entry.length);    
+      let d = data.feed.entry[index].content.$t
+        .split(/,+ /)
+        .map(field=>field.split(/:+ /));
+      let selectedalue = d[i][1];
+      currentCardSet.push(selectedalue); // on ajoute les trois cartes au tableau des cartes courantes         
     }
+    generatedCardsSet.push(currentCardSet); // on pousse les cartes courantes dans la mémoire
 
-    function clearGeneratedCardsSet(){
-      //empty the array
-      generatedCardsSet = [];
-      //remove li elements created    
-      generatedCardMemory.innerHTML = '';
-      //reset index of generated set 
-      generatedCardsSetIndex = 1;
+
+    //################# 2 -> Affichage des cartes tirées ##################     
+    let cardContainer = document.getElementById("generatedCardContainer");       
+
+    document.getElementById("firstCard").innerHTML = currentCardSet[0];
+    document.getElementById("secondCard").innerHTML = currentCardSet[1];
+    document.getElementById("thirdCard").innerHTML = currentCardSet[2]; //on affiche les trois cartes courantes dans trois paragraphes
+
+    cardContainer.style.display = "block";
+
+
+    // #### 3 -> Ajout des cartes tirées au tableau des cartes générées ###
+    let cardTag = [];
+    let cardText = [];
+
+    let lI = document.createElement("li"); // on affiche l'index du tirage pour afficher les cartes en mémoire
+    let lC = document.createTextNode("index du tirage : " + generatedCardsSetIndex); 
+    lI.appendChild(lC);
+    generatedCardMemory.appendChild(lI);      
+
+    for(let i = 0; i < 3; i++){
+      cardTag[i] = document.createElement("li");
+      cardText[i] = document.createTextNode(currentCardSet[i]);
+      cardTag[i].appendChild(cardText[i]);
+
+      generatedCardMemory.appendChild(cardTag[i]); // on affiche affiche les cartes en mémoire
     }
-
-    function loadNewSheet(){
-      SheetIndex = document.getElementById('sheet').value;      
-      url = 'https://spreadsheets.google.com/feeds/list/1hJmH_-bgyaAXR2u2xeR-N_gT9iKIXIjU02YK17dhrU8/'+SheetIndex+'/public/basic?alt=json';
-
-      console.log(url);
-    }
-
     
+    generatedCardsSetIndex += 1;
+  });
+}
 
-//detect click on buttons
+function clearGeneratedCardsSet(){
+  //vider le tableau qui garde en mémoire les anciens tirages
+  generatedCardsSet = [];
+  //vider la liste qui affiche les anciens tirages
+  generatedCardMemory.innerHTML = '';
+  //réinitialiser l'index des tirages
+  generatedCardsSetIndex = 1;
+}
+
+function loadNewSheet(){
+  // récupérer l'index de la feuille à afficher
+  SheetIndex = document.getElementById('sheet').value;   
+  // reconstruire l'url   
+  url = 'https://spreadsheets.google.com/feeds/list/1hJmH_-bgyaAXR2u2xeR-N_gT9iKIXIjU02YK17dhrU8/'+SheetIndex+'/public/basic?alt=json';
+}  
+
+
+/* ############################################################################################
+                                    BUTTONS ACTIONS
+#############################################################################################*/
+
 let generateCardButton = document.getElementById('generateCardButton');
 generateCardButton.addEventListener('click', generateCard);   
 
@@ -88,6 +92,10 @@ clearDataButton.addEventListener('click', clearGeneratedCardsSet);
 let loadNewSheetButton = document.getElementById('loadNewSheetButton');
 loadNewSheetButton.addEventListener('click', loadNewSheet);
 
+
+/* ############################################################################################
+                                    FONCTIONS UTILES
+#############################################################################################*/
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
