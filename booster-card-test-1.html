@@ -1,0 +1,70 @@
+
+
+<!doctype html>
+<html>
+<head>
+	<title>proto itrage au sort carte</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button onclick="add_nom()">Terme</button>
+     <button onclick="tirage()">Tirer au sort</button>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    //Déclarer un tableau
+	var tab=new Array();
+	function add_nom(){
+		tab.push(prompt("Saisir un terme"));
+	}
+    function tirage(){
+    	if(tab.length>0){
+    /*Math.random()*tab.length renvoie un nombre réel entre 0 et la taille du tableau tab.length et on arrondit à l'entier inférieur par la fonction Math.floor()*/
+        var rand = Math.floor(Math.random()*tab.length);
+        alert("Le terme est : "+tab[rand]);
+    	}
+    	else alert("Aucun terme enregistré");
+    }
+</script>
+
+
+
+
+<!-- 
+	<!doctype html>
+<html>
+<head>
+	<title>proto Tirage au sort cartes</title>
+	<meta charset="utf-8">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <p>
+
+  </p>
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+const $url = 'https://spreadsheets.google.com/feeds/list/1hJmH_-bgyaAXR2u2xeR-N_gT9iKIXIjU02YK17dhrU8/1/public/basic?alt=json';
+const p = document.querySelector('p');
+
+$.getJSON($url,function(data){
+    console.log(JSON.stringify(data.feed.entry[0].content.$t));
+
+    // console.log(JSON.stringify(data.feed.entry[0].content["Boost"][0]));
+
+    // data.feed.entry[0].content.$t
+});
+
+
+</script>
+-->
