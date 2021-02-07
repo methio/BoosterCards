@@ -87,9 +87,12 @@ button::before{
   padding: 5%;
 }
 #generateCardButton::before{
-  content:'\f0c3';
+  content:'\e05d'; /*https://fontawesome.com/cheatsheet*/
 }
 
+#clearDataButton::before{
+  content: '\f5fd'
+}
 #clearDataButton{
   display: none;
 }
