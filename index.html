@@ -3,8 +3,8 @@
   <!-- 
   TO DO 
 
-  obj 1 : afficher la donnée 
-  obj 2 : clear : generatedCardsSet
+  ✅ obj 1 : afficher la donnée 
+  ✅ obj 2 : clear : generatedCardsSet
   obj 3 : choisir la feuille qui sert de Set (changer l'index de la page )
 
 -->
@@ -14,89 +14,45 @@
   <link rel="stylesheet" type="text/css" href="style.css"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
 <h1>Tirage au sort de carte</h1>
 <p> rules goes here</p>
-  <ul id="generatedCardContainer">
-    <li id="firstCard"></li>
-    <li id="secondCard"></li>
-    <li id="thirdCard"></li>
-  </ul>
+
+<label for="sheet">Index de la feuille utilisée dans google sheet : </label>
+
+<input 
+  type="number" 
+  name="sheet"
+  id="sheet"
+  min="1" 
+  max="99" 
+  value="1" 
+  required
+>
+<input 
+  type="submit" 
+  value="Charger une nouvelle feuille"
+  id="loadNewSheetButton"
+>
 
   <button id="generateCardButton">générer une carte</button>
 
   <button id="clearDataButton">vider l'historique des tirages</button>
 
+  <div id="generatedCardContainer">
+    <p id="firstCard"></p>
+    <p id="secondCard"></p>
+    <p id="thirdCard"></p>
+  </div>
+
+  <ul id="generatedCardMemoryContainer">    
+  </ul>
+
 
 </body>
 </html>
 <script type="text/javascript">
-
-const SheetIndex = 1;
-const $url = 'https://spreadsheets.google.com/feeds/list/1hJmH_-bgyaAXR2u2xeR-N_gT9iKIXIjU02YK17dhrU8/'+SheetIndex+'/public/basic?alt=json';
-
-let p = document.querySelector('p');
-
-let generatedCardsSet = [];
-
-$.getJSON($url,function(data){
-    // console.log(JSON.stringify(data.feed.entry[0].content.$t));
-
-    // console.log(data.feed.entry[0]);
-    // let i = 0;
-    
-    // let d = data.feed.entry[i].content.$t
-    //   .split(/,+ /)
-    //   .map(field=>field.split(/:+ /));
-
-    // console.log(d);
-    // let col = 2;
-    // let item = 1;
-    // let id = d[col][item];
-    // p.innerHTML = id;
-    
-      
-    function generateCard(){ 
-
-      let dataHandler = [];    
-      
-      for(let i = 0; i < 3; i++){
-        let index = getRandomInt(1, data.feed.entry.length);
-        let col = i;
-      
-        let d = data.feed.entry[index].content.$t
-          .split(/,+ /)
-          .map(field=>field.split(/:+ /));
-
-        let selectedalue = d[col][1];
-        dataHandler.push(selectedalue);
-
-        console.log("index : " + index + ", item : " + selectedalue);        
-      }
-      generatedCardsSet.push(dataHandler);
-      console.log(generatedCardsSet);
-
-      //generatedCardContainer set style : display block | etat normal : none
-      document.getElementById("generatedCardContainer").style.display = "block";
-
-      document.getElementById("firstCard").innerHTML = dataHandler[0];
-      document.getElementById("secondCard").innerHTML = dataHandler[1];
-      document.getElementById("thirdCard").innerHTML = dataHandler[2];
-    }
-
-    //detect click on button 
-    var element = document.getElementById('generateCardButton');
-    element.addEventListener('click', generateCard);
-
-    
-
-});
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 </script>
