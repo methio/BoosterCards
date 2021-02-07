@@ -4,50 +4,52 @@
 	<title>proto Tirage au sort cartes</title>
 	<meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="style.css"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&display=swap" rel="stylesheet">
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&display=swap" rel="stylesheet"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="header">
-    <h1>Booster cards !</h1>
-    <p> rules goes here : test</p>
+  <div id="contentContainer">
+    <div class="header">
+      <h1>Booster cards !</h1>
+      <p> rules goes here : test</p>
+    </div>
+
+    <div id="sheetSelection">
+      <label for="sheet">Index de la feuille utilisée dans google sheet : </label>
+
+      <input 
+        type="number" 
+        name="sheet"
+        id="sheet"
+        min="1" 
+        max="99" 
+        value="1" 
+        required
+      >
+      <input 
+        type="submit" 
+        value="Charger une nouvelle feuille"
+        id="loadNewSheetButton"
+      >
+    </div>
+
+    <div class="actionsButtons">
+      <button id="generateCardButton">générer une carte</button>
+
+      <button id="clearDataButton">vider l'historique des tirages</button>
+    </div>
+
+    <div id="generatedCardContainer">
+      <p id="firstCard"></p>
+      <p id="secondCard"></p>
+      <p id="thirdCard"></p>
+    </div>
+
+    <ul id="generatedCardMemoryContainer">    
+    </ul>
   </div>
-
-  <div id="sheetSelection">
-    <label for="sheet">Index de la feuille utilisée dans google sheet : </label>
-
-    <input 
-      type="number" 
-      name="sheet"
-      id="sheet"
-      min="1" 
-      max="99" 
-      value="1" 
-      required
-    >
-    <input 
-      type="submit" 
-      value="Charger une nouvelle feuille"
-      id="loadNewSheetButton"
-    >
-  </div>
-
-  <div class="actionsButtons">
-    <button id="generateCardButton">générer une carte</button>
-
-    <button id="clearDataButton">vider l'historique des tirages</button>
-  </div>
-
-  <div id="generatedCardContainer">
-    <p id="firstCard"></p>
-    <p id="secondCard"></p>
-    <p id="thirdCard"></p>
-  </div>
-
-  <ul id="generatedCardMemoryContainer">    
-  </ul>
 </body>
 </html>
