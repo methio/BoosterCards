@@ -2,3 +2,17 @@
   /* on affiche la liste une fois qu'on clique sur générer un set de cartes */
   display: none;
 }
+
+body{margin:0 0 0 0;}
+
+.header {
+background-color: black;
+width: 100%;
+top: 0;}
+
+h1 {
+color:white;
+font-family: 'Domine', serif;
+font-size: 75px;
+text-align: center;
+}
