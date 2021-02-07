@@ -10,6 +10,10 @@ let generatedCardsSet = [];
 let generatedCardsSetIndex = 1;
 let generatedCardMemory = document.getElementById("generatedCardMemoryContainer");
 
+let clearDataButton = document.getElementById('clearDataButton');
+let generateCardButton = document.getElementById('generateCardButton');
+let loadNewSheetButton = document.getElementById('loadNewSheetButton');
+
 
 /* ############################################################################################
                                     FONCTIONS PRINCIPALES
@@ -38,7 +42,10 @@ function generateCard(){
     document.getElementById("secondCard").innerHTML = currentCardSet[1];
     document.getElementById("thirdCard").innerHTML = currentCardSet[2]; //on affiche les trois cartes courantes dans trois paragraphes
 
-    cardContainer.style.display = "block";
+    cardContainer.style.display = "flex"; // on modifie certains éléments css 
+    clearDataButton.style.display = "flex";
+    generateCardButton.style.padding = ".5em 2em";
+    generateCardButton.style.width = "auto";
 
 
     // #### 3 -> Ajout des cartes tirées au tableau des cartes générées ###
@@ -83,13 +90,8 @@ function loadNewSheet(){
                                     BUTTONS ACTIONS
 #############################################################################################*/
 
-let generateCardButton = document.getElementById('generateCardButton');
 generateCardButton.addEventListener('click', generateCard);   
-
-let clearDataButton = document.getElementById('clearDataButton');
 clearDataButton.addEventListener('click', clearGeneratedCardsSet);
-
-let loadNewSheetButton = document.getElementById('loadNewSheetButton');
 loadNewSheetButton.addEventListener('click', loadNewSheet);
 
 

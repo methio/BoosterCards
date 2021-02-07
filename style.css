@@ -1,28 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,900;1,400;1,900&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.14.0/css/all.css');
 
 * {
   color: #c2afa4;
   font-family: 'Lato', arial, sans-serif;
  }
-#generatedCardContainer{
-  /* on affiche la liste une fois qu'on clique sur générer un set de cartes */
-  display: none;
-}
 
 body{
   margin:0 0 0 0;
   width: 100vw;
-  background-color: #262f45;  
+  background-color: #131722;
 }
-#contentContainer{
+#contentContainer{  
   max-width: 800px;
+  width: 80%;
   margin: auto;
-}
+  margin-top: 5%;
 
-.header {
-/* background-color: black; */
-width: 100%;
-top: 0;}
+  padding: 2% 5%;
+
+  background-color: #262f45;
+  border-radius: 10px;
+}
 
 h1 {
   font-weight: 900;
@@ -36,6 +35,65 @@ p {
   font-size: 1em;
 }
 
+#generatedCardContainer{
+  /* on affiche la liste une fois qu'on clique sur générer un set de cartes */
+  display: none;
+  flex-direction: row;
+}
+#generatedCardContainer p{  
+  width: 30%;
+  margin: 1.5%;
+  padding: 2%;
+
+  background-color: #676d7c;
+  border-radius: 10px;
+
+  transition: all 0.3s ease-out;
+}
+
+#generatedCardContainer p:hover {
+  width:31%;
+  -webkit-box-shadow: 5px 5px 15px 5px #131722; 
+  box-shadow: 5px 5px 15px 5px #131722;
+}
+
 button{
-  background-color: blue;
+  border-radius: 5px;
+  border:none;
+  padding: .5em 2em;
+
+  text-align: center;
+  background-color: #c2afa4;
+  color: #262f45;
+}
+button::before{
+  font-family: "Font Awesome 5 Free";
+  font-size: 1em;
+  font-weight: 900;
+
+  margin-right: .5em;
+}
+
+.actionsButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  width: 100%;
+  margin: 5% 0%;
+}
+#generateCardButton{
+  width:50%;
+  padding: 5%;
+}
+#generateCardButton::before{
+  content:'\f0c3';
+}
+
+#clearDataButton{
+  display: none;
+}
+
+#loadNewSheetButton::before{
+  content:'\f56d';
 }
