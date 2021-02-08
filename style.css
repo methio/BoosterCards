@@ -44,24 +44,27 @@ p {
   width: 30%;
   margin: 1.5%;
   padding: 2%;
-
   background-color: #676d7c;
   border-radius: 10px;
-
   transition: all 0.3s ease-out;
+  
 }
 
 #generatedCardContainer p:hover {
   width:31%;
   -webkit-box-shadow: 5px 5px 15px 5px #131722; 
   box-shadow: 5px 5px 15px 5px #131722;
+  
 }
 
+button:hover {
+  -webkit-box-shadow: 5px 5px 15px 5px #131722; 
+  box-shadow: 5px 5px 15px 5px #131722;
+}
 button{
   border-radius: 5px;
   border:none;
   padding: .5em 2em;
-
   text-align: center;
   background-color: #c2afa4;
   color: #262f45;
@@ -70,7 +73,6 @@ button::before{
   font-family: "Font Awesome 5 Free";
   font-size: 1em;
   font-weight: 900;
-
   margin-right: .5em;
 }
 
@@ -78,7 +80,6 @@ button::before{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
   width: 100%;
   margin: 5% 0%;
 }
@@ -100,3 +101,18 @@ button::before{
 #loadNewSheetButton::before{
   content:'\f56d';
 }
+.Cards {
+  height: 300px;
+  border: 5px solid #c2afa4; margin: -90px;
+  text-align: center;
+  font-size: 25px;
+  font-style: italic;
+}
+
+#generatedCardMemoryContainer 
+{font-style: italic;
+font-size: 10px;
+text-align: right;}
+ 
+#sheet {color:black;}
+

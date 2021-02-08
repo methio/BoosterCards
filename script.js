@@ -52,13 +52,13 @@ function generateCard(){
     let cardTag = [];
     let cardText = [];
 
-    let lI = document.createElement("li"); // on affiche l'index du tirage pour afficher les cartes en mémoire
-    let lC = document.createTextNode("index du tirage : " + generatedCardsSetIndex); 
+    let lI = document.createElement("ul"); // on affiche l'index du tirage pour afficher les cartes en mémoire
+    let lC = document.createTextNode("Tirage " + generatedCardsSetIndex); 
     lI.appendChild(lC);
     generatedCardMemory.appendChild(lI);      
 
     for(let i = 0; i < 3; i++){
-      cardTag[i] = document.createElement("li");
+      cardTag[i] = document.createElement("ul");
       cardText[i] = document.createTextNode(currentCardSet[i]);
       cardTag[i].appendChild(cardText[i]);
 
